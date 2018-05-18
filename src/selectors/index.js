@@ -1,0 +1,1 @@
+export { categoriesSelector } from './categoriesSelector';
