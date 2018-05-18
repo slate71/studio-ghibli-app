@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+
+  "parserOptions": {
+    "sourceType": "module"
+  },
+
+  "extends": [
+    "semistandard-react"
+  ],
+
+  "globals": {
+    "React": true,
+    "ReactDOM": true,
+    "PropTypes": true,
+    "classNames": true,
+    "L": true
+  },
+
+  "rules": {
+    "react/jsx-quotes": "single",
+    "react/jsx-sort-prop-types": true,
+    "react/wrap-multilines": true
+  }
+}
+
