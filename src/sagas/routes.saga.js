@@ -1,20 +1,23 @@
-import { call, put, fork, takeLatest } from 'redux-saga/effects';
+import { router } from 'redux-saga-router';
+import { history } from './history';
+import { call, put, fork } from 'redux-saga/effects';
+import { fetchUrl } from '../utils';
 import {
   FETCH_CATEGORY_FAILED,
-  FETCH_CATEGORY_SUCCEEDED,
-  fetchCategory
+  FETCH_CATEGORY_SUCCEEDED
 } from '../actions';
 
 const routes = {
-  // '/:category': fetchCategorySaga
+  '/:category': fetchCategorySaga
 };
 
 function * fetchCategorySaga ({ category }) {
   try {
-    const { results } = yield call(fetchCategory, category);
+    const response = yield call(fetchUrl, [category]);
+
     yield put({
       type: FETCH_CATEGORY_SUCCEEDED,
-      payload: { category: results }
+      payload: { category: response }
     })
   } catch (e) {
     yield put({
@@ -24,4 +27,6 @@ function * fetchCategorySaga ({ category }) {
   }
 }
 
-export default function * routesSaga () {}
+export default function * routesSaga () {
+  yield fork(router, history, routes);
+}

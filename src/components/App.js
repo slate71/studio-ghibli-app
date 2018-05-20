@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { categoriesSelector } from '../selectors';
-import './App.css';
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import { CategoryListItem } from './CategoryListItem';
+import { style } from './App.style';
 
-const CategoryItem = props => <div>{props.children}</div>;
-
-class App extends Component {
-  render() {
-    const { categories } = this.props;
-    return (
-      <div className="App">
+const App = props => {
+  const { categories, classes } = props;
+  return (
+    <div className={classes.root}>
+      <List component='nav'>
         {
           categories.map(category => (
-            <CategoryItem
+            <CategoryListItem
               key={category}
-              children={category}
+              path={`/${category}`}
+              text={category}
             />
           ))
         }
-      </div>
-    );
-  }
-}
+      </List>
+    </div>
+  );
+};
 
 App.defaultProps = {
   categories: []
@@ -36,9 +38,4 @@ const mapStateToProps = state => ({
   categories: categoriesSelector(state)
 });
 
-const mapDispatchToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps)(withStyles(style)(App));

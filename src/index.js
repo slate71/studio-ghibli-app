@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleWare from 'redux-saga';
 import reducer from './reducers';
@@ -10,10 +10,13 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 const sagaMiddleWare = createSagaMiddleWare();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   reducer,
-  applyMiddleware(sagaMiddleWare)
+  composeEnhancers(
+    applyMiddleware(sagaMiddleWare)
+  )
 );
 
 sagaMiddleWare.run(routesSaga);
