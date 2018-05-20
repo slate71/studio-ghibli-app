@@ -3,12 +3,16 @@ import {
   FETCH_CATEGORY_SUCCEEDED
 } from '../actions';
 
-export const defaultState = null;
+export const defaultState = {
+  currentCategory: null,
+  categoryItems: null,
+  categoryComponent: null
+};
 
 export const categoryReducer = (state = defaultState, action) => {
   switch (action.type) {
     case FETCH_CATEGORY_SUCCEEDED:
-      return action.payload.category;
+      return action.payload;
     case CLEAR_CATEGORY:
       return defaultState;
     default:
