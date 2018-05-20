@@ -6,6 +6,7 @@ import { style } from './CategoryList.style';
 
 const CategoryList = ({ categories, classes }) => (
   <div className={classes.root}>
+    <h1>Categories</h1>
     <List component='nav'>
       {
         categories.map(category => (
