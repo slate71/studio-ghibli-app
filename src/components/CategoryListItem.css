@@ -1,0 +1,12 @@
+.category-list-item__link .category-list-item--active {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.category-list-item__link {
+  text-decoration: none;
+}
+
+.category-list-item__text h3 {
+  color: #716843;
+  text-transform: capitalize;
+}

@@ -1,0 +1,7 @@
+[class*="__link"] {
+  text-decoration: none;
+}
+
+[class*="__list-item-text"] h3 {
+  color: #716843;
+}

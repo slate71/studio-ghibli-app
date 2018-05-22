@@ -4,9 +4,8 @@ import List from '@material-ui/core/List';
 import { CategoryListItem } from './CategoryListItem';
 import { style } from './CategoryList.style';
 
-const CategoryList = ({ categories, classes }) => (
+const CategoryList = ({ categories, currentCategory, classes }) => (
   <div className={classes.root}>
-    <h1>Categories</h1>
     <List component='nav'>
       {
         categories.map(category => (
@@ -14,6 +13,7 @@ const CategoryList = ({ categories, classes }) => (
             key={category}
             path={`/${category}`}
             text={category}
+            active={category === currentCategory}
           />
         ))
       }

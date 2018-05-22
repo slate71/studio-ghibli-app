@@ -18,7 +18,8 @@
   },
 
   "rules": {
-    "react/jsx-quotes": 2,
+    "jsx-quotes": [2, "prefer-single"],
+    "react/jsx-quotes": 0,
     "react/jsx-sort-prop-types": true,
     "react/wrap-multilines": true
   }

@@ -5,13 +5,36 @@ import { categoriesSelector, categorySelector, categoryItemSelector } from '../s
 import Category from './Category';
 import CategoryList from './CategoryList';
 import CategoryItem from './CategoryItem';
+import StudioGhibliLogo from './StudioGhibliLogo';
+
+const style = {
+  fontFamily: 'roboto',
+  padding: '1.618em',
+  display: 'grid',
+  gridTemplateRows: '100px auto',
+  gridTemplateColumns: '280px auto'
+};
 
 const App = ({ categories, category, categoryItem }) => (
-  categoryItem
-    ? <CategoryItem {...categoryItem} />
-    : category
-      ? <Category {...category} />
-      : <CategoryList categories={categories} />
+  <div style={style}>
+    <StudioGhibliLogo />
+    <CategoryList
+      categories={categories}
+      currentCategory={category && category.currentCategory}
+    />
+    <div style={{
+      overflowY: 'scroll',
+      height: 'calc(100vh - 100px - 2 * 1.618em)'
+    }}>
+      {
+        categoryItem
+          ? <CategoryItem {...categoryItem} />
+          : category
+            ? <Category {...category} />
+            : null
+      }
+    </div>
+  </div>
 );
 
 App.defaultProps = {

@@ -1,0 +1,23 @@
+.category-item {
+  max-width: 90ch;
+  color: #2b2510;
+  padding: 0 1.618em;
+}
+
+.category-item h1 {
+  margin-top: 12px;
+}
+
+.category-item:nth-child(n):not(h1) {
+  font-weight: 300;
+}
+
+.category-item__field {
+  margin-bottom: 1.618em;
+}
+
+.category-item__key {
+  color: #0033a0;
+  font-weight: 500;
+  text-transform: capitalize;
+}

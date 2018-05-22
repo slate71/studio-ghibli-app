@@ -5,18 +5,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 export default props => (
-  <div>
-    <h1>{props.currentCategory}</h1>
-    <List>
-      {
-        props.categoryItems.map(species =>
-          <Link key={species.id} to={`/species/${species.id}`}>
-            <ListItem button>
-              <ListItemText primary={species.name} />
-            </ListItem>
-          </Link>
-        )
-      }
-    </List>
-  </div>
+  <List>
+    {
+      props.categoryItems.map(species =>
+        <Link className='species__link' key={species.id} to={`/species/${species.id}`}>
+          <ListItem button>
+            <ListItemText className='species__list-item-text' primary={species.name} />
+          </ListItem>
+        </Link>
+      )
+    }
+  </List>
 );
