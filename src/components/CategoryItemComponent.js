@@ -34,7 +34,7 @@ export const FilmItem = ({ id, title, name, relatedCategoryItems, ...fields }) =
             <ul>
               {
                 map(items, item =>
-                  <Link key={item.id} to={`/${category}/${item.id}`}>
+                  <Link key={item.id} to={`/studio-ghibli-app/${category}/${item.id}`}>
                     <li>{item.title || item.name}</li>
                   </Link>
                 )

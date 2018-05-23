@@ -11,7 +11,7 @@ export default props => (
         <Link
           className='locations__link'
           key={location.id}
-          to={`/locations/${location.id}`}>
+          to={`/studio-ghibli-app/locations/${location.id}`}>
           <ListItem button>
             <ListItemText
               className='locations__list-item-text'

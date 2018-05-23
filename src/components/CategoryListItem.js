@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import './CategoryListItem.css';
 
 export const CategoryListItem = ({path, text, active}) => (
-  <Link className='category-list-item__link' to={path}>
+  <Link className='category-list-item__link' to={`/studio-ghibli-app${path}`}>
     <ListItem
       button
       className={classNames(
@@ -28,5 +28,6 @@ CategoryListItem.defaultProps = {
 
 CategoryListItem.propTypes = {
   path: PropTypes.string,
-  text: PropTypes.string
+  text: PropTypes.string,
+  active: PropTypes.bool
 };

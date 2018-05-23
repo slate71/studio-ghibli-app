@@ -8,7 +8,7 @@ export default props => (
   <List>
     {
       props.categoryItems.map(species =>
-        <Link className='species__link' key={species.id} to={`/species/${species.id}`}>
+        <Link className='species__link' key={species.id} to={`/studio-ghibli-app/species/${species.id}`}>
           <ListItem button>
             <ListItemText className='species__list-item-text' primary={species.name} />
           </ListItem>

@@ -8,9 +8,9 @@ import {
 } from '../sagas';
 
 const routes = {
-  '/': clearCategorySaga,
-  '/:category': fetchCategorySaga,
-  '/:category/:id': fetchCategoryItemSaga
+  '/studio-ghibli-app/': clearCategorySaga,
+  '/studio-ghibli-app/:category': fetchCategorySaga,
+  '/studio-ghibli-app/:category/:id': fetchCategoryItemSaga
 };
 
 export default function * routesSaga () {

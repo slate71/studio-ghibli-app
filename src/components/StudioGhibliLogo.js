@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from '../sagas/history';
 
 const StudioGhibliLogo = props => (
-  <Link to='/'>
+  <Link to='/studio-ghibli-app'>
     <img src={props.url} style={{ height: '100%' }} alt={props.alt} />
   </Link>
 );
