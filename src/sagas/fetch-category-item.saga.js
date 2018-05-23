@@ -9,12 +9,18 @@ import {
 
 export function * fetchCategoryItemSaga ({ category, id }) {
   try {
-    const response = yield call(fetchUrl, [`${category}/${id}`]);
+    const response = yield call(fetchUrl, `${category}/${id}`);
 
-    const urlArrays = pickBy(response, value => Array.isArray(value));
+    const urlArrays = pickBy(response, value => (
+      Array.isArray(value) ||
+      (typeof value === 'string' && value.includes('ghibliapi.herokuapp.com'))
+    ));
 
     const categoryIds = map(urlArrays, (urls, category) => {
-      const ids = urls.map(url => url.split('/').pop());
+      const ids = Array.isArray(urls)
+        ? urls.map(url => url.split('/').pop())
+        : [urls.split('/').pop()];
+
       return [
         category,
         ids.map((id, idx) => idx === 0
@@ -27,7 +33,17 @@ export function * fetchCategoryItemSaga ({ category, id }) {
     const relatedCategoryItems = {};
     for (const item in categoryIds) {
       const [ category, query ] = categoryIds[item];
-      relatedCategoryItems[category] = yield call(fetchUrl, `/${category}${query}`);
+
+      if (category === 'url') { continue; }
+
+      const parseCategory = category => ['pilot', 'residents'].includes(category)
+        ? 'people'
+        : category;
+
+      relatedCategoryItems[category] = yield call(
+        fetchUrl,
+        `/${parseCategory(category)}${query}`
+      );
     }
 
     yield put({

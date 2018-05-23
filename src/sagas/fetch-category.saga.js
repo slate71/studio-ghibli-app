@@ -8,7 +8,7 @@ import {
 
 export function * fetchCategorySaga ({ category }) {
   try {
-    const response = yield call(fetchUrl, [category]);
+    const response = yield call(fetchUrl, category);
 
     yield put({
       type: FETCH_CATEGORY_SUCCEEDED,

@@ -1,25 +1,21 @@
 import Films from '../components/Films';
-import FilmItem from '../components/FilmItem';
 import People from '../components/People';
-import PersonItem from '../components/PersonItem';
 import Locations from '../components/Locations';
-import LocationItem from '../components/LocationItem';
 import Species from '../components/Species';
-import SpeciesItem from '../components/SpeciesItem';
 import Vehicles from '../components/Vehicles';
-import VehicleItem from '../components/VehicleItem';
+import CategoryItemComponent from '../components/CategoryItemComponent';
 
 const componentLookUp = component => ({
   'films': Films,
-  'films-item': FilmItem,
+  'films-item': CategoryItemComponent,
   'people': People,
-  'people-item': PersonItem,
+  'people-item': CategoryItemComponent,
   'locations': Locations,
-  'locations-item': LocationItem,
+  'locations-item': CategoryItemComponent,
   'species': Species,
-  'species-item': SpeciesItem,
+  'species-item': CategoryItemComponent,
   'vehicles': Vehicles,
-  'vehicles-item': VehicleItem
+  'vehicles-item': CategoryItemComponent
 })[component] || null;
 
 export const getComponentFor = componentName => componentLookUp(componentName);

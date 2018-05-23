@@ -1,29 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import map from 'lodash.map';
-import omit from 'lodash.omit';
+import omitBy from 'lodash.omitby';
 import capitalize from 'lodash.capitalize';
 import { Link } from '../sagas/history';
 
-export const PersonItem = ({ id, name, urlFields, relatedCategoryItems, ...fields }) => (
-  <div className='person-item category-item'>
-    <h1>{name}</h1>
+export const FilmItem = ({ id, title, name, relatedCategoryItems, ...fields }) => (
+  <div className='film-item category-item'>
+    <h1>{title || name}</h1>
     {
       map(
-        omit(fields, urlFields),
-        (value, key) => (
-          <div key={key} className='person-item__field category-item__field'>
-            <span className='person-item__key category-item__key'>
-              {capitalize(key.replace('_', ' '))}:&nbsp;
+        omitBy(fields, (field) =>
+          Array.isArray(field) || field.includes('ghibliapi.herokuapp.com')
+        ),
+        (field, label) => (
+          <div key={label} className='film-item__field category-item__field'>
+            <span className='film-item__key category-item__key'>
+              {capitalize(label.replace('_', ' '))}:&nbsp;
             </span>
-            <span>{value}</span>
+            <span>{field}</span>
           </div>
         )
       )
     }
     {
       map(
-        relatedCategoryItems,
+        omitBy(relatedCategoryItems, (field, key) => field.length === 0 || key === 'url'),
         (items, category) => (
           <div key={category} className='film-item__field category-item__field'>
             <span className='film-item__key category-item__key'>
@@ -45,15 +47,11 @@ export const PersonItem = ({ id, name, urlFields, relatedCategoryItems, ...field
   </div>
 );
 
-PersonItem.propTypes = {
+FilmItem.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
-  urlFields: PropTypes.arrayOf(PropTypes.string),
+  name: PropTypes.string,
   relatedCategoryItems: PropTypes.object
 };
 
-PersonItem.defaultProps = {
-  urlFields: [ 'url', 'people', 'species', 'locations', 'vehicles', 'films' ]
-};
-
-export default PersonItem;
+export default FilmItem;

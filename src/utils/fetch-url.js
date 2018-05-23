@@ -1,5 +1,10 @@
 export const fetchUrl = url => {
-  const urlObj = new URL(url, 'https://ghibliapi.herokuapp.com');
+  const urlObj = new URL(
+    url
+      .split('/')
+      .filter(path => !path.match('studio-ghibli-app')).join('/'),
+    'https://ghibliapi.herokuapp.com'
+  );
 
   return fetch(urlObj)
     .then(statusHelper)
