@@ -4,6 +4,7 @@ import map from 'lodash.map';
 import omitBy from 'lodash.omitby';
 import capitalize from 'lodash.capitalize';
 import { Link } from '../sagas/history';
+import { parseCategory } from '../utils';
 
 export const FilmItem = ({ id, title, name, relatedCategoryItems, ...fields }) => (
   <div className='film-item category-item'>
@@ -34,7 +35,7 @@ export const FilmItem = ({ id, title, name, relatedCategoryItems, ...fields }) =
             <ul>
               {
                 map(items, item =>
-                  <Link key={item.id} to={`/studio-ghibli-app/${category}/${item.id}`}>
+                  <Link key={item.id} to={`/studio-ghibli-app/${parseCategory(category)}/${item.id}`}>
                     <li>{item.title || item.name}</li>
                   </Link>
                 )

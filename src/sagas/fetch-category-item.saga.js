@@ -1,7 +1,7 @@
 import pickBy from 'lodash.pickby';
 import map from 'lodash.map';
 import { call, put } from 'redux-saga/effects';
-import { fetchUrl, getComponentFor } from '../utils';
+import { fetchUrl, getComponentFor, parseCategory } from '../utils';
 import {
   FETCH_CATEGORY_ITEM_FAILED,
   FETCH_CATEGORY_ITEM_SUCCEEDED
@@ -35,10 +35,6 @@ export function * fetchCategoryItemSaga ({ category, id }) {
       const [ category, query ] = categoryIds[item];
 
       if (category === 'url') { continue; }
-
-      const parseCategory = category => ['pilot', 'residents'].includes(category)
-        ? 'people'
-        : category;
 
       relatedCategoryItems[category] = yield call(
         fetchUrl,
